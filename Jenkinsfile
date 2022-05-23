@@ -22,7 +22,8 @@ pipeline {
         }
         stage('Clone Frontend repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/ArturBed/Frontend.git'
+                //git branch: 'main', url: 'https://github.com/ArturBed/Frontend.git'
+                checkout scm
             }
         }
 
@@ -35,7 +36,7 @@ pipeline {
         stage('Run tests') {
             steps {
                 sh "pip3 install -r requirements.txt"
-                sh "python3 -m pytest --cov=. --cov-report xml:testresults/coverage.xml --junitxml=test-results/pytestreport.xml"
+                sh "python3 -m pytest --cov=. --cov-report xml:test-results/coverage.xml --junitxml=test-results/pytest-report.xml"
             }
         }
 
